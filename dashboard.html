@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - TICKETS-FET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- ICONOS -->
+    <script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<!-- BOTÓN HAMBURGUESA -->
+<div class="menu-toggle" id="menu-toggle">
+    <i class="fas fa-bars"></i>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="close-btn" id="close-btn">
+        <i class="fas fa-times"></i>
+    </div>
+
+    <h2>SPORTHUB</h2>
+
+    <ul>
+        <li><i class="fas fa-home"></i> Dashboard</li>
+        <li><i class="fas fa-box"></i> Inventario</li>
+        <li><i class="fas fa-calendar"></i> Alquileres</li>
+        <li><i class="fas fa-chart-line"></i> Reportes</li>
+        <li><i class="fas fa-ticket-alt"></i> Tickets</li>
+        <li><i class="fas fa-users"></i> Clientes</li>
+        <li><i class="fas fa-cog"></i> Configuración</li>
+        <li class="logout" onclick="logout()">
+    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+</li> 
+    </ul>
+
+</aside>
+
+<!-- CONTENIDO -->
+<main class="main-content">
+
+    <!-- NAVBAR -->
+    <header class="topbar">
+        <input type="text" placeholder="Buscar..." class="search">
+        <div class="user">
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </header>
+
+    <!-- TITULO -->
+    <h1>DASHBOARD</h1>
+    <p class="subtitle">Monitoreo general del sistema</p>
+
+    <!-- CARDS -->
+    <section class="cards">
+
+        <div class="card">
+            <h3>Total productos</h3>
+            <p>6</p>
+        </div>
+
+        <div class="card">
+            <h3>Disponibles</h3>
+            <p>4</p>
+        </div>
+
+        <div class="card">
+            <h3>Alquilados</h3>
+            <p>3</p>
+        </div>
+
+        <div class="card">
+            <h3>Tickets abiertos</h3>
+            <p>2</p>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- JS -->
+<script>
+const toggle = document.getElementById("menu-toggle");
+const sidebar = document.getElementById("sidebar");
+const closeBtn = document.getElementById("close-btn");
+
+toggle.addEventListener("click", () => {
+    sidebar.classList.add("active");
+});
+
+closeBtn.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+});
+</script>
+
+<script>
+// Verificar si está logueado
+const isLoggedIn = localStorage.getItem("loggedIn");
+
+if(isLoggedIn !== "true"){
+    window.location.href = "index.html";
+}
+</script>
+
+<script>
+function logout(){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+}
+</script>
+</body>
+</html>

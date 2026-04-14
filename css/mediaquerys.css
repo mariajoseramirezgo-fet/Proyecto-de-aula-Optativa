@@ -1,0 +1,212 @@
+@media screen and (max-width: 767px){
+
+    /* LOGO */
+    .logo-login{
+        width: clamp(180px, 25vw, 300px);
+        margin: 30px auto 20px auto;
+    }
+
+    /* CARD */
+    .card{
+        width: 500px; /* más grande pero controlado */
+        padding: 50px 35px;
+    }
+
+    /* TITULOS */
+    .card h2{
+        font-size: 32px;
+    }
+
+    .card p{
+        font-size: 18px;
+    }
+
+    /* FORMULARIO */
+    .form-login{
+        gap: 14px;
+    }
+
+    /* INPUTS */
+    .input-login{
+        padding: 16px;
+        font-size: 16px;
+    }
+
+
+    /* BOTÓN */
+    .btn-enviar{
+        padding: 16px;
+        font-size: 16px;
+    }
+
+    .extra-links{
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .extra-links p{
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .extra-links a{
+        font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer{
+        font-size: 14px;
+    }
+}
+/*Resoliución de pantalla para tablet*/
+@media  (min-width: 768px){
+
+    .logo-login{
+        width: clamp(180px, 25vw, 300px);
+        margin: 30px auto 20px auto;
+    }
+
+    .card{
+        width: 550px;
+        height: 650px;
+        padding: 50px 35px;
+    }
+
+    /* TITULOS */
+    .card h2{
+        font-size: 40px;
+    }
+
+    .card p{
+        font-size: 25px;
+    }
+
+    /* FORMULARIO */
+    .form-login{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-bottom:  20px;
+    }
+
+    /* INPUTS */
+    .input-login{
+        width: 100%;
+        padding: 16px;
+        font-size: 16px;
+        margin-bottom: 10px; ;
+    }
+
+    /* CHECKBOX */
+    .remember{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        margin-bottom:  20px;
+    }
+
+    /* BOTÓN */
+    .btn-enviar{
+        width: 100%;
+        padding: 16px;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom:  10px;
+    }
+
+
+    .extra-links{
+        width: 100%;
+        text-align: center; 
+        margin-top: 20px;
+    }
+
+    .extra-links p{
+        font-size: 14px;
+    }
+
+    .extra-links a{
+        font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer{
+        font-size: 14px;
+    }
+}
+ /*Resoliución de pantalla para desktop*/
+@media screen and (min-width: 1024px) and (max-width: 1439px){
+
+    /* LOGO */
+    .logo-login{
+        width: clamp(200px, 18vw, 320px);
+        margin: 40px auto 25px auto;
+    }
+
+    /* CARD */
+    .card{
+        width: 620px; /* más compacto que tablet */
+        height: 900px;
+        padding: 45px 30px;
+    }
+
+    /* TITULO */
+    .card h2{
+        font-size: 40px;
+    }
+
+    /* TEXTO */
+    .card p{
+        font-size: 30px;
+    }
+
+    /* FORM */
+    .form-login{
+        width: 50vw;
+        height: 160px;
+        gap: 14px;
+        margin-bottom: 20px;
+        margin-top:  50px;
+    }
+
+    /* INPUTS */
+    .input-login{
+        padding: 14px;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    /* CHECKBOX */
+    .remember{
+        font-size: 26px;
+    }
+
+    /* BOTÓN */
+    .btn-enviar{
+        padding: 14px;
+        font-size: 30px;
+    }
+
+    /* LINKS */
+    .extra-links p{
+        font-size: 26px;
+    }
+
+    .extra-links a{
+        font-size: 26px;
+        font-weight: 600%;
+    }
+
+    /* FOOTER */
+    footer{
+        font-size: 14px;
+    }
+}
+/*Resoliución de pantalla para Extra Large*/
+@media (min-width: 1440px) {
+
+}
