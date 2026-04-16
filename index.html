@@ -28,8 +28,27 @@
             <p>Ingresa tus credenciales para acceder</p>
     <!-- SOLO EMAIL Y CONTRASEÑA -->
             <div class="form-login">
-    <input id="email" class="input-login"type="email" name="email" placeholder="Correo electrónico" maxlength="50" minlength="5" title="Introduce tu correo electrónico" pattern="[a-zA-Z0-9]+([.][a-zA-Z0-9_]+)@[a-zA-Z0-9]+([.][a-zA-Z0-9_]+)[.][a-zA-Z]{1,5}" required>
-            <input id="password" class="input-login"type="password" placeholder="Contraseña" maxlength="25" minlength="8" title="Introduce tu contraseña" pattern="{8,25}" required>
+                <input 
+        id="email" 
+        class="input-login"
+        type="email" 
+        name="email" 
+        placeholder="Correo electrónico" 
+        maxlength="50" 
+        minlength="5" 
+        title="Introduce tu correo electrónico" 
+        required>
+        <input 
+        id="password" 
+        class="input-login"
+        type="password" 
+        name="password"
+        placeholder="Contraseña" 
+        maxlength="25" 
+        minlength="8" 
+        title="Introduce tu contraseña" 
+        pattern=".{8,25}" 
+        required>
 
 
     <div class="remember">
@@ -37,7 +56,10 @@
         <label>Mantener la sesión iniciada</label>
     </div>
 
-    <button class="btn-enviar">INICIA SESIÓN</button>
+<a href="dashboard.html">
+        <button type="submit" class="btn-enviar">INICIA SESIÓN</button>
+</a>
+
 
     <div class="extra-links">
         <p>¿Olvidaste tu contraseña? <a href="Recuperar.html">Recuperar</a></p>
@@ -54,7 +76,26 @@
         <small>Mariajose &copy; 2026</small>
     </footer>
 
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e){
+    e.preventDefault();
 
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const adminEmail = "admin@admin.com";
+    const adminPassword = "12345678";
+
+    if(email === adminEmail && password === adminPassword){
+
+        localStorage.setItem("login", "true");
+        window.location.href = "dashboard.html";
+    }else{
+
+        alert("Correo o contraseña incorrectos");
+    }
+});
+</script>
 </body>
 </html>
 
