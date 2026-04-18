@@ -99,6 +99,15 @@ body{
 }
 
 /* SIDEBAR */
+
+.sidebar ul li a{
+display:flex;
+align-items:center;
+gap:10px;
+color:inherit;
+text-decoration:none;
+width:100%;
+}
 .sidebar{
     width:220px;
     min-height:100vh;
