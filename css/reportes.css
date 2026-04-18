@@ -158,7 +158,7 @@ width:100%;
 .card-inventario,
 .card-venta,
 .card-alquilados,
-.card-tickets{
+.card-crecimiento{
     background:#fff;
     padding:20px;
     border-radius:12px;
@@ -168,7 +168,7 @@ width:100%;
 .card-inventario{border-left:5px solid #3498db;}
 .card-venta{border-left:5px solid #2ecc71;}
 .card-alquilados{border-left:5px solid #f39c12;}
-.card-tickets{border-left:5px solid #e74c3c;}
+.card-crecimiento{border-left:5px solid #00cf2a;}
 
 .cards h3{
     font-size:18px;
@@ -185,7 +185,7 @@ width:100%;
 .card-inventario i,
 .card-venta i,
 .card-alquilados i,
-.card-tickets i{
+.card-crecimiento i{
     position:absolute;
     right:20px;
     top:20px;
@@ -195,7 +195,7 @@ width:100%;
 .card-inventario i{color:#3498db;}
 .card-venta i{color:#2ecc71;}
 .card-alquilados i{color:#f39c12;}
-.card-tickets i{color:#e74c3c;}
+.card-crecimiento i{color:#00cf2a;}
 
 /* CARDS GRANDES */
 

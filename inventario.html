@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Inventario - SportHub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/inventario.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+
+<script>
+if(localStorage.getItem("login") !== "true"){
+    window.location.href="index.html";
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="menu">
+        <button id="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="logo">
+            <img src="img/logo_dashboard.png">
+        </div>
+    </div>
+
+    <div class="search">
+        <input type="text" placeholder="Buscar...">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+
+    <div class="icons">
+        <button>
+            <i class="fa-regular fa-bell"></i>
+        </button>
+
+        <button onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+    </div>
+
+    <div class="user">
+        <div>
+            <p><b>Admin Sport</b></p>
+            <small>Administrador de tienda</small>
+        </div>
+        <img src="img/avatar.png">
+    </div>
+
+</header>
+
+<div class="container">
+
+<aside id="sidebar" class="sidebar">
+<ul>
+<li>
+<a href="dashboard.html">
+<i class="fa-solid fa-house"></i>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a href="inventario.html">
+<i class="fa-solid fa-box"></i>
+<span>Inventario</span>
+</a>
+</li>
+<li>
+<a href="alquileres.html">
+<i class="fa-solid fa-calendar"></i>
+<span>Alquileres</span>
+</a>
+</li>
+<li>
+<a href="reportes.html">
+<i class="fa-solid fa-chart-line"></i>
+<span>Reportes</span>
+</a>
+</li>
+<li>
+<a href="tickets.html">
+<i class="fa-solid fa-ticket"></i>
+<span>Tickets</span>
+</a>
+</li>
+<li>
+<a href="clientes.html">
+<i class="fa-solid fa-users"></i>
+<span>Clientes</span>
+</a>
+</li>
+<li>
+<a href="configuracion.html">
+<i class="fa-solid fa-gear"></i>
+<span>Configuración</span>
+</a>
+</li>
+</ul>
+</aside>
+    <main class="main-content">
+
+        <h2>GESTIÓN DE INVENTARIO</h2>
+        <p>Monitorea y controla el stock de tu tienda deportiva.</p>
+
+        <button class="btn-nuevo" onclick="abrirModal()">
+        + NUEVO PRODUCTO
+        </button>
+
+        <div class="filtros">
+            <button>Todos</button>
+            <button>Calzado</button>
+            <button>Ropa</button>
+            <button>Accesorios</button>
+            <button>Equipamiento</button>
+        </div>
+
+        <div class="tabla-productos">
+
+            <div class="tabla-header">
+                <span>Producto</span>
+                <span>Categoría</span>
+                <span>Precio</span>
+                <span>Stock</span>
+                <span>Estado</span>
+                <span>Acciones</span>
+            </div>
+
+            <div class="producto">
+                <div class="producto-info">
+                    <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                    <div>
+                        <b>Raqueta Wilson Pro</b>
+                        <small>SKU: WI-PS-97-V13</small>
+                    </div>
+                </div>
+
+                <span class="categoria">Equipamiento</span>
+                <span>$249.990</span>
+                <span class="stock">45</span>
+                <span class="estado disponible">DISPONIBLE</span>
+
+                <div class="acciones">
+                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+            </div>
+
+            <div class="producto">
+                <div class="producto-info">
+                    <i class="fa-solid fa-futbol"></i>
+                    <div>
+                        <b>Pelota de Fútbol</b>
+                        <small>SKU: AD-UCL-2024</small>
+                    </div>
+                </div>
+
+                <span class="categoria">Equipamiento</span>
+                <span>$29.990</span>
+                <span class="stock bajo">3</span>
+                <span class="estado alquilado">ALQUILADO</span>
+
+                <div class="acciones">
+                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+            </div>
+
+            <div class="producto">
+                <div class="producto-info">
+                    <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                    <div>
+                        <b>Raqueta Wilson Pro</b>
+                        <small>SKU: WI-PS-97-V13</small>
+                    </div>
+                </div>
+
+                <span class="categoria">Equipamiento</span>
+                <span>$249.990</span>
+                <span class="stock">45</span>
+                <span class="estado disponible">DISPONIBLE</span>
+
+                <div class="acciones">
+                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+            </div>
+            <div class="producto">
+                <div class="producto-info">
+                    <i class="fa-solid fa-futbol"></i>
+                    <div>
+                        <b>Pelota de Fútbol</b>
+                        <small>SKU: AD-UCL-2024</small>
+                    </div>
+                </div>
+
+                <span class="categoria">Equipamiento</span>
+                <span>$29.990</span>
+                <span class="stock bajo">3</span>
+                <span class="estado vencido">VENCIDO</span>
+
+                <div class="acciones">
+                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="resumen-stock">
+
+            <div class="card-resumen">
+                <h4>VALOR TOTAL STOCK</h4>
+                <p>$4.673.950</p>
+            </div>
+
+            <div class="card-resumen">
+                <h4>TOTAL PRODUCTOS</h4>
+                <p>6</p>
+            </div>
+
+            <div class="card-resumen">
+                <h4>STOCK BAJO</h4>
+                <p>2</p>
+            </div>
+
+            <div class="card-resumen">
+                <h4>SIN STOCK</h4>
+                <p>0</p>
+            </div>
+
+        </div>
+</div>
+    </main>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>Nuevo Producto</h3>
+
+        <input id="nombre" type="text" placeholder="Nombre">
+        <input id="categoria" type="text" placeholder="Categoría">
+        <input id="precio" type="number" placeholder="Precio">
+        <input id="stock" type="number" placeholder="Stock">
+
+        <button onclick="guardarProducto()">Guardar</button>
+        <button onclick="cerrarModal()">Cancelar</button>
+    </div>
+</div>
+
+<footer class="footer">
+    <small>Mariajose © 2026</small>
+</footer>
+
+<script>
+function logout(){
+    localStorage.removeItem("login");
+    window.location.href="index.html";
+}
+
+const btn=document.getElementById("menu-toggle");
+const sidebar=document.getElementById("sidebar");
+
+btn.addEventListener("click",()=>{
+    sidebar.classList.toggle("active");
+});
+
+</script>
+// Funciones para editar y eliminar productos
+<script>
+function abrirModal(){
+    document.getElementById("modal").style.display = "block";
+}
+
+function cerrarModal(){
+    document.getElementById("modal").style.display = "none";
+}
+
+function guardarProducto(){
+    const nombre = document.getElementById("nombre").value;
+    const categoria = document.getElementById("categoria").value;
+    const precio = document.getElementById("precio").value;
+    const stock = document.getElementById("stock").value;
+
+    if(nombre === "" || precio === "" || stock === ""){
+        alert("Completa los campos");
+        return;
+    }
+
+    const tabla = document.querySelector(".tabla-productos");
+
+    const nuevo = document.createElement("div");
+    nuevo.classList.add("producto");
+
+    nuevo.innerHTML = `
+        <div class="producto-info">
+            <i class="fa-solid fa-box"></i>
+            <div>
+                <b>${nombre}</b>
+                <small>SKU: AUTO</small>
+            </div>
+        </div>
+
+        <span class="categoria">${categoria}</span>
+        <span>$${precio}</span>
+        <span class="stock">${stock}</span>
+        <span class="estado disponible">DISPONIBLE</span>
+
+        <div class="acciones">
+            <i class="fa-solid fa-pen"></i>
+            <i class="fa-solid fa-trash"></i>
+        </div>
+    `;
+
+    tabla.appendChild(nuevo);
+
+    cerrarModal();
+
+    // limpiar inputs
+    document.getElementById("nombre").value = "";
+    document.getElementById("categoria").value = "";
+    document.getElementById("precio").value = "";
+    document.getElementById("stock").value = "";
+}
+</script>
+</body>
+</html>

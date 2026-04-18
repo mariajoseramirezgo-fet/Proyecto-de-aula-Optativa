@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Configuración - SportHub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/configuracion.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+
+<script>
+if(localStorage.getItem("login") !== "true"){
+window.location.href = "index.html";
+}
+</script>
+
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="menu">
+
+<button id="menu-toggle">
+<i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="logo">
+<img src="img/logo_dashboard.png">
+</div>
+
+</div>
+
+
+<div class="search">
+<input type="text" placeholder="Buscar...">
+<i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+
+<div class="icons">
+
+<button>
+<i class="fa-regular fa-bell"></i>
+</button>
+
+<button onclick="logout()">
+<i class="fa-solid fa-arrow-right-from-bracket"></i>
+</button>
+
+</div>
+
+
+<div class="user">
+
+<div>
+<p><b>Admin Sport</b></p>
+<small>Administrador de tienda</small>
+</div>
+
+<img src="img/avatar.png">
+
+</div>
+
+</header>
+
+
+
+<div class="container">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+<i class="fa-solid fa-house"></i>
+<span>Dashboard</span>
+</a>
+</li>
+
+<li>
+<a href="inventario.html">
+<i class="fa-solid fa-box"></i>
+<span>Inventario</span>
+</a>
+</li>
+
+<li>
+<a href="alquileres.html">
+<i class="fa-solid fa-calendar"></i>
+<span>Alquileres</span>
+</a>
+</li>
+
+<li>
+<a href="reportes.html">
+<i class="fa-solid fa-chart-line"></i>
+<span>Reportes</span>
+</a>
+</li>
+
+<li>
+<a href="tickets.html">
+<i class="fa-solid fa-ticket"></i>
+<span>Tickets</span>
+</a>
+</li>
+
+<li>
+<a href="clientes.html">
+<i class="fa-solid fa-users"></i>
+<span>Clientes</span>
+</a>
+</li>
+
+<li>
+<a href="configuracion.html">
+<i class="fa-solid fa-gear"></i>
+<span>Configuración</span>
+</a>
+</li>
+
+</ul>
+
+</aside>
+
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+<h1>CONFIGURACIÓN</h1>
+<p>Administra tu cuenta, usuarios y preferencias del sistema.</p>
+
+
+
+<div class="config-container">
+
+<!-- MENU CONFIG -->
+
+<div class="config-menu">
+
+<ul>
+
+<li onclick="mostrarSeccion('cuenta')">
+<i class="fa-solid fa-user"></i> Mi cuenta
+</li>
+
+<li onclick="mostrarSeccion('vendedores')">
+<i class="fa-solid fa-users"></i> Designar vendedor
+</li>
+
+<li onclick="mostrarSeccion('notificaciones')">
+<i class="fa-solid fa-bell"></i> Notificaciones
+</li>
+
+<li onclick="mostrarSeccion('seguridad')">
+<i class="fa-solid fa-shield"></i> Seguridad
+</li>
+
+</ul>
+
+</div>
+
+
+
+<!-- CONTENIDO -->
+
+<div class="config-content">
+
+<!-- CUENTA -->
+
+<div id="cuenta" class="seccion">
+
+<h2>ADMINISTRAR CUENTA</h2>
+
+<div class="perfil-card">
+
+<img src="img/avatar.png">
+
+<div class="perfil-form">
+
+<label>Foto de perfil</label>
+<input type="file">
+
+<label>Nombre</label>
+<input type="text" value="Admin Sport">
+
+<label>Correo</label>
+<input type="email" value="admin@sporthub.com">
+
+<label>Contraseña</label>
+<input type="password" value="********">
+
+<button class="btn-verde">Guardar cambios</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- VENDEDORES -->
+
+<div id="vendedores" class="seccion oculto">
+
+<h2>GESTIÓN DE VENDEDORES</h2>
+
+<button class="btn-verde" onclick="abrirFormulario()">
++ Designar vendedor
+</button>
+
+<table class="tabla">
+
+<tr>
+<th>Nombre</th>
+<th>Correo</th>
+<th>Acción</th>
+</tr>
+
+<tbody id="tablaVendedores">
+
+<tr>
+<td>Juan Pérez</td>
+<td>juan@sporthub.com</td>
+<td>
+<button class="btn-rojo" onclick="eliminarVendedor(this)">Eliminar</button>
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+
+<div id="formVendedor" class="formulario oculto">
+
+<h3>Nuevo vendedor</h3>
+
+<input type="text" id="nombreVendedor" placeholder="Nombre">
+
+<input type="email" id="correoVendedor" placeholder="Correo">
+
+<button class="btn-verde" onclick="guardarVendedor()">
+Guardar
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- NOTIFICACIONES -->
+
+<div id="notificaciones" class="seccion oculto">
+
+<h2>NOTIFICACIONES DE STOCK</h2>
+
+<div class="alerta amarillo">
+⚠ Producto "Guayos Nike" con stock bajo
+</div>
+
+<div class="alerta amarillo">
+⚠ Producto "Balón Adidas" con pocas unidades
+</div>
+
+<div class="alerta verde">
+✔ Inventario actualizado correctamente
+</div>
+
+</div>
+
+
+
+<!-- SEGURIDAD -->
+
+<div id="seguridad" class="seccion oculto">
+
+<h2>SEGURIDAD</h2>
+
+<label>Contraseña actual</label>
+<input type="password">
+
+<label>Nueva contraseña</label>
+<input type="password">
+
+<label>Confirmar contraseña</label>
+<input type="password">
+
+<button class="btn-verde">
+Actualizar contraseña
+</button>
+
+</div>
+
+
+
+</div>
+</div>
+
+</main>
+
+</div>
+
+
+
+<script>
+
+function mostrarSeccion(id){
+
+let secciones = document.querySelectorAll(".seccion");
+
+secciones.forEach(sec => {
+sec.classList.add("oculto");
+});
+
+document.getElementById(id).classList.remove("oculto");
+
+}
+
+
+
+function abrirFormulario(){
+document.getElementById("formVendedor").classList.remove("oculto");
+}
+
+
+
+function guardarVendedor(){
+
+let nombre = document.getElementById("nombreVendedor").value;
+let correo = document.getElementById("correoVendedor").value;
+
+if(nombre=="" || correo==""){
+alert("Completa los campos");
+return;
+}
+
+let tabla = document.getElementById("tablaVendedores");
+
+let fila = document.createElement("tr");
+
+fila.innerHTML=`
+<td>${nombre}</td>
+<td>${correo}</td>
+<td>
+<button class="btn-rojo" onclick="eliminarVendedor(this)">Eliminar</button>
+</td>
+`;
+
+tabla.appendChild(fila);
+
+document.getElementById("nombreVendedor").value="";
+document.getElementById("correoVendedor").value="";
+
+}
+
+
+
+function eliminarVendedor(btn){
+
+let confirmacion = confirm("¿Desea eliminar este vendedor?");
+
+if(confirmacion){
+
+let fila = btn.parentNode.parentNode;
+fila.remove();
+
+}
+
+}
+
+</script>
+
+
+</body>
+</html>

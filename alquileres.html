@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Alquileres - SportHub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/alquileres.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+
+<script>
+if(localStorage.getItem("login") !== "true"){
+    window.location.href = "index.html";
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="menu">
+        <button id="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="logo">
+            <img src="img/logo_dashboard.png">
+        </div>
+    </div>
+
+    <div class="search">
+        <input type="text" placeholder="Buscar...">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+
+    <div class="icons">
+        <button>
+            <i class="fa-regular fa-bell"></i>
+        </button>
+
+        <button onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+    </div>
+
+    <div class="user">
+        <div>
+            <p><b>Admin Sport</b></p>
+            <small>Administrador de tienda</small>
+        </div>
+        <img src="img/avatar.png">
+    </div>
+
+</header>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+        <ul>
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a></li>
+            <li><a href="inventario.html"><i class="fa-solid fa-box"></i><span>Inventario</span></a></li>
+            <li><a href="alquileres.html"><i class="fa-solid fa-calendar"></i><span>Alquileres</span></a></li>
+            <li><a href="reportes.html"><i class="fa-solid fa-chart-line"></i><span>Reportes</span></a></li>
+            <li><a href="tickets.html"><i class="fa-solid fa-ticket"></i><span>Tickets</span></a></li>
+            <li><a href="clientes.html"><i class="fa-solid fa-users"></i><span>Clientes</span></a></li>
+            <li><a href="configuracion.html"><i class="fa-solid fa-gear"></i><span>Configuración</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <h2>GESTIÓN DE ALQUILERES</h2>
+        <p>Alquila equipamiento y accesorios deportivos a tus clientes.</p>
+
+        <div class="alquileres-container">
+
+            <!-- FORM -->
+            <div class="card-form">
+                <h3>NUEVO ALQUILER</h3>
+
+                <label>Buscar producto</label>
+                <input type="text" id="producto">
+
+                <label>Nombre del Cliente</label>
+                <input type="text" id="cliente">
+
+                <div class="row">
+                    <div>
+                        <label>Precio</label>
+                        <input type="number" id="precio" placeholder="$">
+                    </div>
+
+                    <div>
+                        <label>Stock actual</label>
+                        <input type="number" id="stock" placeholder="0">
+                    </div>
+                </div>
+
+                <button type="button" class="btn-alquilar">
+                    REGISTRAR ALQUILER
+                </button>
+            </div>
+
+            <!-- TABLA -->
+            <div class="card-tabla">
+
+                <h3>LISTA DE ALQUILERES</h3>
+
+                <div class="tabla-header">
+                    <span>ID</span>
+                    <span>CLIENTE</span>
+                    <span>PRODUCTO</span>
+                    <span>INICIO</span>
+                    <span>DEVOLUCIÓN</span>
+                </div>
+
+                <div class="fila">
+                    <span>#1</span>
+                    <div class="cliente"><i class="fa-regular fa-user"></i> Juan Pérez</div>
+                    <span>Pelota Adidas UCL</span>
+                    <span>2026-02-15</span>
+                    <div class="fecha"><i class="fa-regular fa-calendar"></i> 2026-02-20</div>
+                </div>
+
+                <div class="fila">
+                    <span>#2</span>
+                    <div class="cliente"><i class="fa-regular fa-user"></i> Maria Garcia</div>
+                    <span>Raqueta Wilson Pro Staff</span>
+                    <span>2026-02-15</span>
+                    <div class="fecha"><i class="fa-regular fa-calendar"></i> 2026-02-20</div>
+                </div>
+
+                <div class="fila">
+                    <span>#3</span>
+                    <div class="cliente"><i class="fa-regular fa-user"></i> Ana García</div>
+                    <span>Mochila Deportiva 30L</span>
+                    <span>2026-02-15</span>
+                    <div class="fecha"><i class="fa-regular fa-calendar"></i> 2026-02-20</div>
+                </div>
+            <div id="lista-alquileres"></div>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <small>Mariajose © 2026</small>
+</footer>
+
+<script>
+function logout(){
+    localStorage.removeItem("login");
+    window.location.href="index.html";
+}
+
+const btn=document.getElementById("menu-toggle");
+const sidebar=document.getElementById("sidebar");
+
+btn.addEventListener("click",()=>{
+    sidebar.classList.toggle("active");
+});
+</script>
+
+
+</body>
+</html>

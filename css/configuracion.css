@@ -1,0 +1,238 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI;
+}
+
+body{
+background:#f5f5f5;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:white;
+border-bottom:1px solid #eee;
+}
+
+.logo img{
+height:35px;
+}
+
+.search{
+position:relative;
+}
+
+.search input{
+padding:8px 30px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.search i{
+position:absolute;
+right:10px;
+top:10px;
+}
+
+.icons button{
+border:none;
+background:none;
+font-size:18px;
+margin:0 10px;
+cursor:pointer;
+}
+
+.user{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.user img{
+width:35px;
+border-radius:50%;
+}
+
+
+/* SIDEBAR */
+
+.container{
+display:flex;
+}
+
+.sidebar{
+width:220px;
+background:white;
+height:100vh;
+padding-top:20px;
+border-right:1px solid #eee;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar li{
+padding:12px 20px;
+}
+
+.sidebar a{
+text-decoration:none;
+color:#333;
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+
+/* MAIN */
+
+.main{
+flex:1;
+padding:30px;
+}
+
+.config-container{
+display:flex;
+gap:30px;
+margin-top:20px;
+}
+
+
+/* MENU CONFIG */
+
+.config-menu{
+width:200px;
+}
+
+.config-menu ul{
+list-style:none;
+}
+
+.config-menu li{
+padding:10px;
+cursor:pointer;
+border-radius:6px;
+margin-bottom:10px;
+}
+
+.config-menu li:hover{
+background:#eee;
+}
+
+
+/* CONTENIDO */
+
+.config-content{
+flex:1;
+}
+
+.seccion{
+margin-bottom:40px;
+}
+
+.oculto{
+display:none;
+}
+
+
+/* PERFIL */
+
+.perfil-card{
+display:flex;
+gap:20px;
+background:white;
+padding:20px;
+border-radius:8px;
+}
+
+.perfil-card img{
+width:120px;
+border-radius:50%;
+}
+
+.perfil-form{
+flex:1;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.perfil-form input{
+padding:8px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+
+/* TABLA */
+
+.tabla{
+width:100%;
+margin-top:15px;
+border-collapse:collapse;
+}
+
+.tabla th,
+.tabla td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+
+/* FORM */
+
+.formulario{
+margin-top:20px;
+background:white;
+padding:15px;
+border-radius:6px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+
+/* BOTONES */
+
+.btn-verde{
+background:#22c55e;
+border:none;
+color:white;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.btn-rojo{
+background:#ef4444;
+border:none;
+color:white;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+
+/* ALERTAS */
+
+.alerta{
+padding:10px;
+border-radius:6px;
+margin-bottom:10px;
+}
+
+.amarillo{
+background:#fff3cd;
+}
+
+.verde{
+background:#d1fae5;
+}

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Inventario - SportHub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/inventario.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+
+<script>
+if(localStorage.getItem("login") !== "true"){
+    window.location.href="index.html";
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="menu">
+        <button id="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="logo">
+            <img src="img/logo_dashboard.png">
+        </div>
+    </div>
+
+    <div class="search">
+        <input type="text" placeholder="Buscar...">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+
+    <div class="icons">
+        <button><i class="fa-regular fa-bell"></i></button>
+        <button onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+    </div>
+
+    <div class="user">
+        <div>
+            <p><b>Admin Sport</b></p>
+            <small>Administrador de tienda</small>
+        </div>
+        <img src="img/avatar.png">
+    </div>
+
+</header>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside id="sidebar" class="sidebar">
+<ul>
+<li><a href="dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a></li>
+<li><a href="inventario.html"><i class="fa-solid fa-box"></i><span>Inventario</span></a></li>
+<li><a href="alquileres.html"><i class="fa-solid fa-calendar"></i><span>Alquileres</span></a></li>
+<li><a href="reportes.html"><i class="fa-solid fa-chart-line"></i><span>Reportes</span></a></li>
+<li><a href="tickets.html"><i class="fa-solid fa-ticket"></i><span>Tickets</span></a></li>
+<li><a href="clientes.html"><i class="fa-solid fa-users"></i><span>Clientes</span></a></li>
+<li><a href="configuracion.html"><i class="fa-solid fa-gear"></i><span>Configuración</span></a></li>
+</ul>
+</aside>
+
+<!-- CONTENIDO -->
+<main class="main-content">
+
+<h2>Sistema de tickets</h2>
+<p>Controla problemas, reportes y estado de productos.</p>
+
+<button class="btn-nuevo" onclick="abrirModal()">
++ NUEVO TICKET
+</button>
+
+<!-- TABLA -->
+<div class="tabla-productos">
+
+    <div class="tabla-header">
+        <span>Producto</span>
+        <span>Problema</span>
+        <span>Reportado por</span>
+        <span>Prioridad</span>
+        <span>Estado</span>
+        <span>Acciones</span>
+    </div>
+
+    <!-- ITEM 1 -->
+    <div class="producto">
+        <div class="producto-info">
+            <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+            <div>
+                <b>Raqueta Wilson Pro Staff</b>
+            </div>
+        </div>
+
+        <div class="problema">
+            Daño en producto<br>
+            <small>Desgaste en el grip</small>
+        </div>
+
+        <span>Carlos Soto</span>
+
+        <span class="prioridad baja">BAJA</span>
+
+        <span class="estado abierto">ABIERTO</span>
+
+        <div class="acciones">
+            <i class="fa-solid fa-pen"></i>
+            <i class="fa-solid fa-trash" onclick="eliminar(this)"></i>
+        </div>
+    </div>
+
+    <!-- ITEM 2 -->
+    <div class="producto">
+        <div class="producto-info">
+            <i class="fa-solid fa-futbol"></i>
+            <div>
+                <b>Pelota Adidas UCL</b>
+            </div>
+        </div>
+
+        <div class="problema">
+            Defecto de fabricación<br>
+            <small>Costuras defectuosas</small>
+        </div>
+
+        <span>Laura Díaz</span>
+
+        <span class="prioridad media">MEDIA</span>
+
+        <span class="estado proceso">EN PROCESO</span>
+
+        <div class="acciones">
+            <i class="fa-solid fa-pen"></i>
+            <i class="fa-solid fa-trash" onclick="eliminar(this)"></i>
+        </div>
+    </div>
+
+</div>
+
+</main>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>Nuevo Ticket</h3>
+
+        <input id="producto" type="text" placeholder="Producto">
+        <input id="problema" type="text" placeholder="Problema">
+        <input id="detalle" type="text" placeholder="Detalle">
+        <input id="reportado" type="text" placeholder="Reportado por">
+
+        <select id="prioridad">
+            <option value="baja">Baja</option>
+            <option value="media">Media</option>
+            <option value="alta">Alta</option>
+        </select>
+
+        <button onclick="guardarTicket()">Guardar</button>
+        <button onclick="cerrarModal()">Cancelar</button>
+    </div>
+</div>
+
+<footer class="footer">
+    <small>Mariajose © 2026</small>
+</footer>
+
+<script>
+// LOGOUT
+function logout(){
+    localStorage.removeItem("login");
+    window.location.href="index.html";
+}
+
+// SIDEBAR
+document.getElementById("menu-toggle").addEventListener("click", () => {
+    document.getElementById("sidebar").classList.toggle("active");
+});
+
+// MODAL
+function abrirModal(){
+    document.getElementById("modal").style.display = "block";
+}
+
+function cerrarModal(){
+    document.getElementById("modal").style.display = "none";
+}
+
+// ELIMINAR
+function eliminar(btn){
+    btn.closest(".producto").remove();
+}
+
+// GUARDAR TICKET
+function guardarTicket(){
+    const producto = document.getElementById("producto").value;
+    const problema = document.getElementById("problema").value;
+    const detalle = document.getElementById("detalle").value;
+    const reportado = document.getElementById("reportado").value;
+    const prioridad = document.getElementById("prioridad").value;
+
+    if(!producto || !problema || !reportado){
+        alert("Completa los campos");
+        return;
+    }
+
+    const tabla = document.querySelector(".tabla-productos");
+
+    const nuevo = document.createElement("div");
+    nuevo.classList.add("producto");
+
+    nuevo.innerHTML = `
+        <div class="producto-info">
+            <i class="fa-solid fa-box"></i>
+            <div><b>${producto}</b></div>
+        </div>
+
+        <div class="problema">
+            ${problema}<br>
+            <small>${detalle}</small>
+        </div>
+
+        <span>${reportado}</span>
+
+        <span class="prioridad ${prioridad}">${prioridad.toUpperCase()}</span>
+
+        <span class="estado abierto">ABIERTO</span>
+
+        <div class="acciones">
+            <i class="fa-solid fa-pen"></i>
+            <i class="fa-solid fa-trash" onclick="eliminar(this)"></i>
+        </div>
+    `;
+
+    tabla.appendChild(nuevo);
+
+    cerrarModal();
+
+    // limpiar
+    document.getElementById("producto").value = "";
+    document.getElementById("problema").value = "";
+    document.getElementById("detalle").value = "";
+    document.getElementById("reportado").value = "";
+}
+</script>
+
+</body>
+</html>
