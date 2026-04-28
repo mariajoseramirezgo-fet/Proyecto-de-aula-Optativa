@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Alquiler - TICKETS-FET</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/alquileruser.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="menu">
+<button id="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+<div class="logo"><img src="img/logo_dashboard.png" alt="logo"></div>
+</div>
+
+<div class="search">
+<input type="text" placeholder="Buscar...">
+<i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+<div class="icons">
+<button><i class="fa-regular fa-bell"></i></button>
+<button onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+</div>
+
+<div class="user">
+<div>
+<p><b id="nombreUser">User</b></p>
+<small>Usuario tienda</small>
+</div>
+<img src="img/avatar.png" alt="avatar">
+</div>
+
+</header>
+
+<div class="container">
+
+<aside id="sidebar" class="sidebar">
+<ul>
+<li><a href="userinicio.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a></li>
+<li><a href="productosCatalogo.html"><i class="fa-solid fa-box"></i><span>Productos</span></a></li>
+<li><a href="alquileruser.html"><i class="fa-solid fa-calendar"></i><span>Alquiler</span></a></li>
+<li><a href="historialuser.html"><i class="fa-solid fa-clock-rotate-left"></i><span>Historial</span></a></li>
+<li><a href="configuracionuser.html"><i class="fa-solid fa-gear"></i><span>Configuración</span></a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+
+<h1>Alquilar producto</h1>
+
+<div class="alquiler-box">
+
+<h2>Información del alquiler</h2>
+
+<form id="formAlquiler" class="form-grid">
+
+<div class="campo">
+<label>Nombre completo</label>
+<input type="text" id="nombre" required>
+</div>
+
+<div class="campo">
+<label>Documento</label>
+<input type="text" id="documento" inputmode="numeric" required>
+</div>
+
+<div class="campo">
+<label>Fecha inicio</label>
+<input type="date" id="fechaInicio" required>
+</div>
+
+<div class="campo">
+<label>Fecha fin</label>
+<input type="date" id="fechaFin" required>
+</div>
+
+<div class="campo">
+<label>Días de alquiler</label>
+<input type="text" id="dias" readonly>
+</div>
+
+<div class="boton">
+<button type="submit" class="btn-verde">Confirmar alquiler</button>
+</div>
+
+</form>
+
+</div>
+
+</main>
+</div>
+
+<footer class="footer">
+<small>Mariajose © 2026</small>
+</footer>
+
+<script>
+// SIDEBAR
+const btn = document.getElementById("menu-toggle");
+const sidebar = document.getElementById("sidebar");
+
+btn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("active");
+});
+
+// LOGOUT
+function logout(){
+    localStorage.removeItem("login");
+    window.location.href="index.html";
+}
+
+// SOLO NÚMEROS
+const docInput = document.getElementById("documento");
+
+docInput.addEventListener("input", function(){
+    this.value = this.value.replace(/[^0-9]/g, "");
+});
+
+// CALCULAR DÍAS
+const inicio = document.getElementById("fechaInicio");
+const fin = document.getElementById("fechaFin");
+const dias = document.getElementById("dias");
+
+function calcularDias(){
+    if(inicio.value && fin.value){
+        let f1 = new Date(inicio.value);
+        let f2 = new Date(fin.value);
+
+        let diff = (f2 - f1) / (1000 * 60 * 60 * 24);
+
+        dias.value = diff >= 0 ? diff + 1 : "";
+    }
+}
+
+inicio.addEventListener("change", calcularDias);
+fin.addEventListener("change", calcularDias);
+
+// VALIDACIÓN
+document.getElementById("formAlquiler").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    if(dias.value === ""){
+        alert("Selecciona fechas válidas");
+        return;
+    }
+
+    alert("Alquiler registrado correctamente ✅");
+    this.reset();
+    dias.value = "";
+});
+</script>
+
+</body>
+</html>

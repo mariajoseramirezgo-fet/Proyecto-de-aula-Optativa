@@ -10,8 +10,22 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+// VALIDAR LOGIN
 if(localStorage.getItem("login") !== "true"){
     window.location.href = "index.html";
+}
+
+// OBTENER USUARIO
+let usuario = JSON.parse(localStorage.getItem("usuario"));
+
+// SI NO EXISTE → FUERA
+if(!usuario){
+    window.location.href = "index.html";
+}
+
+// 🔥 SOLO ADMIN PUEDE ENTRAR
+if(usuario.rol !== "admin"){
+    window.location.href = "userinicio.html";
 }
 </script>
 
@@ -20,7 +34,6 @@ if(localStorage.getItem("login") !== "true"){
 <body>
 
 <header class="header">
-
 <div class="menu">
 <button id="menu-toggle">
 <i class="fa-solid fa-bars"></i>
@@ -53,55 +66,62 @@ if(localStorage.getItem("login") !== "true"){
 </div>
 <img src="img/avatar.png">
 </div>
-
 </header>
 
 <div class="container">
 
 <aside id="sidebar" class="sidebar">
 <ul>
+
 <li>
 <a href="dashboard.html">
 <i class="fa-solid fa-house"></i>
 <span>Dashboard</span>
 </a>
 </li>
+
 <li>
 <a href="inventario.html">
 <i class="fa-solid fa-box"></i>
 <span>Inventario</span>
 </a>
 </li>
+
 <li>
 <a href="alquileres.html">
 <i class="fa-solid fa-calendar"></i>
 <span>Alquileres</span>
 </a>
 </li>
+
 <li>
 <a href="reportes.html">
 <i class="fa-solid fa-chart-line"></i>
 <span>Reportes</span>
 </a>
 </li>
+
 <li>
 <a href="tickets.html">
 <i class="fa-solid fa-ticket"></i>
 <span>Tickets</span>
 </a>
 </li>
+
 <li>
 <a href="clientes.html">
 <i class="fa-solid fa-users"></i>
 <span>Clientes</span>
 </a>
 </li>
+
 <li>
 <a href="configuracion.html">
 <i class="fa-solid fa-gear"></i>
 <span>Configuración</span>
 </a>
 </li>
+
 </ul>
 </aside>
 
@@ -170,7 +190,6 @@ if(localStorage.getItem("login") !== "true"){
 </div>
 
 <div class="card-large">
-
 <h3>Tickets</h3>
 
 <div class="stock-item">
@@ -191,51 +210,60 @@ if(localStorage.getItem("login") !== "true"){
 </div>
 
 </section>
-
 </main>
 
 </div>
 
 <footer class="footer">
-<small>Mariajose &copy; 2026</small>
+<small>Mariajose © 2026</small>
 </footer>
 
 <script>
+document.addEventListener("DOMContentLoaded", function(){
 
+    let usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    // NOMBRE DINÁMICO
+    document.querySelector(".user p b").textContent = usuario.nombre;
+    document.querySelector(".user small").textContent = "Administrador de tienda";
+
+    // SIDEBAR
+    const btn = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+
+    btn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("active");
+    });
+
+    // GRÁFICA
+    const ctx = document.getElementById('graficaVentas');
+
+    new Chart(ctx,{
+        type:'line',
+        data:{
+            labels:['Lun','Mar','Mie','Jue','Vie','Sab','Dom'],
+            datasets:[{
+                label:'Alquileres',
+                data:[2,4,5,7,9,8,7],
+                borderColor:'#4a6cf7',
+                backgroundColor:'rgba(74,108,247,0.1)',
+                tension:0.4,
+                fill:true
+            }]
+        },
+        options:{
+            responsive:true,
+            plugins:{legend:{display:false}}
+        }
+    });
+
+});
+
+// LOGOUT
 function logout(){
-localStorage.removeItem("login");
-window.location.href="index.html";
+    localStorage.clear();
+    window.location.href = "index.html";
 }
-
-const btn=document.getElementById("menu-toggle");
-const sidebar=document.getElementById("sidebar");
-
-btn.addEventListener("click",()=>{
-sidebar.classList.toggle("active");
-});
-
-// Gráfica de ventas
-const ctx=document.getElementById('graficaVentas');
-
-new Chart(ctx,{
-type:'line',
-data:{
-labels:['Lun','Mar','Mie','Jue','Vie','Sab','Dom'],
-datasets:[{
-label:'Alquileres',
-data:[2,4,5,7,9,8,7],
-borderColor:'#4a6cf7',
-backgroundColor:'rgba(74,108,247,0.1)',
-tension:0.4,
-fill:true
-}]
-},
-options:{
-responsive:true,
-plugins:{legend:{display:false}}
-}
-});
-
 </script>
 
 </body>

@@ -343,7 +343,6 @@ margin-top:5px;
     box-shadow:0 10px 30px rgba(0,0,0,0.2);
     animation: aparecer 0.3s ease;
 }
-
 @keyframes aparecer{
     from{
         transform: translateY(-20px);
@@ -402,4 +401,11 @@ margin-top:5px;
 
 .modal-content button:last-of-type:hover{
     background:#ddd;
+}
+
+.footer{
+margin-top: 20px;
+text-align:center;
+padding:8px;
+background:#d9d9d9;
 }

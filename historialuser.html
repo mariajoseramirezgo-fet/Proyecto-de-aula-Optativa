@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Productos - TICKETS-FET</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/historialuser.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="menu">
+<button id="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+<div class="logo"><img src="img/logo_dashboard.png"></div>
+</div>
+
+<div class="search">
+<input type="text" placeholder="Buscar...">
+<i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+<div class="icons">
+<button><i class="fa-regular fa-bell"></i></button>
+<button onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+</div>
+
+<div class="user">
+<div>
+<p><b id="nombreUser">User</b></p>
+<small>Usuario tienda   </small>
+</div>
+<img src="img/avatar.png">
+</div>
+
+</header>
+
+<div class="container">
+
+<aside id="sidebar" class="sidebar">
+<ul>
+<li><a href="userinicio.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a></li>
+<li><a href="productosCatalogo.html"><i class="fa-solid fa-box"></i><span>Productos</span></a></li>
+<li><a href="alquileruser.html"><i class="fa-solid fa-calendar"></i><span>Alquiler</span></a></li>
+<li><a href="historialuser.html"><i class="fa-solid fa-clock-rotate-left"></i><span>Historial</span></a></li>
+<li><a href="configuracionuser.html"><i class="fa-solid fa-gear"></i><span>Configuración</span></a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+
+<h1>Historial de actividades</h1>
+<p>Consulta tus compras y alquileres realizados.</p>
+
+<!-- FILTROS -->
+<div class="filtros">
+<button onclick="filtrar('todos')">Todos</button>
+<button onclick="filtrar('venta')">Ventas</button>
+<button onclick="filtrar('alquiler')">Alquileres</button>
+<button onclick="filtrar('activo')">Activos</button>
+<button onclick="filtrar('finalizado')">Finalizados</button>
+</div>
+
+<div class="tabla-container">
+<table class="tabla">
+
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Producto</th>
+<th>Fecha inicio</th>
+<th>Fecha fin</th>
+<th>Días</th>
+<th>Total</th>
+<th>Estado</th>
+</tr>
+</thead>
+
+<tbody id="tablaHistorial">
+</tbody>
+
+</table>
+</div>
+
+</main>
+
+</div>
+
+<footer class="footer">
+<small>Mariajose &copy; 2026</small>
+</footer>
+
+<script>
+
+function logout(){
+localStorage.removeItem("login");
+window.location.href="index.html";
+}
+
+const btn=document.getElementById("menu-toggle");
+const sidebar=document.getElementById("sidebar");
+
+btn.addEventListener("click",()=>{
+sidebar.classList.toggle("active");
+});
+
+let historial = [
+    {
+        tipo:"alquiler",
+        producto:"Balón Adidas",
+        inicio:"2026-04-20",
+        fin:"2026-04-23",
+        dias:3,
+        total:"$30.000",
+        estado:"activo"
+    },
+    {
+        tipo:"venta",
+        producto:"Guantes Nike",
+        inicio:"2026-04-10",
+        fin:"-",
+        dias:"-",
+        total:"$50.000",
+        estado:"finalizado"
+    }
+];
+
+function cargarHistorial(lista){
+    let tabla = document.getElementById("tablaHistorial");
+    tabla.innerHTML = "";
+
+    lista.forEach(item => {
+        tabla.innerHTML += `
+        <tr>
+            <td class="${item.tipo === 'venta' ? 'tipo-venta' : 'tipo-alquiler'}">
+                ${item.tipo}
+            </td>
+            <td>${item.producto}</td>
+            <td>${item.inicio}</td>
+            <td>${item.fin}</td>
+            <td>${item.dias}</td>
+            <td>${item.total}</td>
+            <td class="${item.estado === 'activo' ? 'estado-activo' : 'estado-finalizado'}">
+                ${item.estado}
+            </td>
+        </tr>
+        `;
+    });
+}
+
+// FILTROS
+function filtrar(tipo){
+
+    if(tipo === "todos"){
+        cargarHistorial(historial);
+        return;
+    }
+
+    let filtrado = historial.filter(item => 
+        item.tipo === tipo || item.estado === tipo
+    );
+
+    cargarHistorial(filtrado);
+}
+
+cargarHistorial(historial);
+</script>
+</body>
+</html>

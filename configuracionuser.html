@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Configuración_user - TICKETS-FET</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/configuracionuser.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="menu">
+<button id="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+<div class="logo"><img src="img/logo_dashboard.png" alt="logo"></div>
+</div>
+
+<div class="search">
+<input type="text" placeholder="Buscar...">
+<i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+<div class="icons">
+<button><i class="fa-regular fa-bell"></i></button>
+<button onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+</div>
+
+<div class="user">
+<div>
+<p><b id="nombreUser">User</b></p>
+<small>Usuario tienda</small>
+</div>
+<img id="imgUser" src="img/avatar.png" alt="avatar">
+</div>
+
+</header>
+
+<div class="container">
+
+<aside id="sidebar" class="sidebar">
+<ul>
+<li><a href="userinicio.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a></li>
+<li><a href="productosCatalogo.html"><i class="fa-solid fa-box"></i><span>Productos</span></a></li>
+<li><a href="alquileruser.html"><i class="fa-solid fa-calendar"></i><span>Alquiler</span></a></li>
+<li><a href="historialuser.html"><i class="fa-solid fa-clock-rotate-left"></i><span>Historial</span></a></li>
+<li><a href="configuracionuser.html"><i class="fa-solid fa-gear"></i><span>Configuración</span></a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+
+<h2>Configuración</h2>
+
+<div class="config-container">
+
+<div class="card">
+<h3>Perfil</h3>
+<img id="previewImg" src="img/avatar.png" class="avatar">
+<input type="file" id="inputImg">
+<button onclick="guardarImagen()">Guardar imagen</button>
+</div>
+
+<div class="card">
+<h3>Cambiar contraseña</h3>
+<input type="password" id="passActual" placeholder="Contraseña actual">
+<input type="password" id="passNueva" placeholder="Nueva contraseña">
+<button onclick="cambiarPassword()">Actualizar contraseña</button>
+</div>
+
+<div class="card">
+<h3>Carrito</h3>
+<ul id="carritoLista"></ul>
+</div>
+
+</div>
+
+</main>
+</div>
+
+<footer class="footer">
+<small>Mariajose © 2026</small>
+</footer>
+
+<script>
+
+// SIDEBAR
+const btn = document.getElementById("menu-toggle");
+const sidebar = document.getElementById("sidebar");
+
+btn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("active");
+});
+
+// CARGA
+document.addEventListener("DOMContentLoaded", function(){
+
+    let usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    if(usuario){
+        document.getElementById("nombreUser").textContent = usuario.nombre;
+    }
+
+    let img = localStorage.getItem("fotoPerfil");
+
+    if(img){
+        document.getElementById("previewImg").src = img;
+        document.getElementById("imgUser").src = img;
+    }
+
+    cargarCarrito();
+});
+
+// LOGOUT
+function logout(){
+    localStorage.clear();
+    window.location.href="index.html";
+}
+
+// IMAGEN
+function guardarImagen(){
+
+    let file = document.getElementById("inputImg").files[0];
+
+    if(!file){
+        alert("Selecciona una imagen");
+        return;
+    }
+
+    let reader = new FileReader();
+
+    reader.onload = function(e){
+        localStorage.setItem("fotoPerfil", e.target.result);
+        document.getElementById("previewImg").src = e.target.result;
+        document.getElementById("imgUser").src = e.target.result;
+        alert("Imagen actualizada");
+    }
+
+    reader.readAsDataURL(file);
+}
+
+// PASSWORD
+function cambiarPassword(){
+
+    let actual = document.getElementById("passActual").value;
+    let nueva = document.getElementById("passNueva").value;
+
+    let usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    if(actual !== usuario.password){
+        alert("Contraseña actual incorrecta");
+        return;
+    }
+
+    usuario.password = nueva;
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+
+    alert("Contraseña actualizada");
+}
+
+// CARRITO
+function cargarCarrito(){
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    let lista = document.getElementById("carritoLista");
+    lista.innerHTML = "";
+
+    carrito.forEach(p => {
+        let li = document.createElement("li");
+        li.textContent = p.nombre + " - $" + p.precio;
+        lista.appendChild(li);
+    });
+}
+
+</script>
+
+</body>
+</html>

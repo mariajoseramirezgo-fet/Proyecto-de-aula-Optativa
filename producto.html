@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Producto Detalle - TICKETS-FET</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/productodetalle.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+
+<script>
+// SEGURIDAD
+if(localStorage.getItem("login") !== "true"){
+    window.location.href = "index.html";
+}
+
+let usuario = JSON.parse(localStorage.getItem("usuario"));
+
+if(!usuario){
+    window.location.href = "index.html";
+}
+
+if(usuario.rol !== "user"){
+    window.location.href = "dashboard.html";
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="menu">
+<button id="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+<div class="logo"><img src="img/logo_dashboard.png"></div>
+</div>
+
+<div class="search">
+<input type="text" placeholder="Buscar...">
+<i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+<div class="icons">
+<button><i class="fa-regular fa-bell"></i></button>
+<button onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+</div>
+
+<div class="user">
+<div>
+<p><b id="nombreUser"></b></p>
+<small>Usuario</small>
+</div>
+<img src="img/avatar.png">
+</div>
+
+</header>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside id="sidebar" class="sidebar">
+<ul>
+<li><a href="userinicio.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a></li>
+<li><a href="productosCatalogo.html"><i class="fa-solid fa-box"></i><span>Productos</span></a></li>
+<li><a href="alquileruser.html"><i class="fa-solid fa-calendar"></i><span>Alquiler</span></a></li>
+<li><a href="historialuser.html"><i class="fa-solid fa-clock-rotate-left"></i><span>Historial</span></a></li>
+<li><a href="configuracionuser.html"><i class="fa-solid fa-gear"></i><span>Configuración</span></a></li>
+</ul>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+<div class="detalle-producto">
+
+<div class="img-container">
+<img id="imgProducto">
+</div>
+
+<div class="info-producto">
+<h2 id="nombre"></h2>
+<p id="precio" class="precio"></p>
+<p id="descripcion"></p>
+
+<div class="acciones">
+<button class="btn comprar" onclick="abrirModal()">Comprar</button>
+<button class="btn carrito" onclick="carrito()">Carrito</button>
+<button class="btn alquilar" onclick="alquilar()">Alquilar</button>
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<!-- MODAL -->
+<div id="modalCompra" class="modal">
+<div class="modal-content">
+
+<h3>Datos de compra</h3>
+
+<p><b>Producto:</b> <span id="modalProducto"></span></p>
+<p><b>Precio:</b> $<span id="precioUnitario"></span></p>
+
+<label>Cantidad</label>
+<input type="number" id="cantidad" min="1" value="1">
+
+<p class="total">Total: $<span id="totalCompra">0</span></p>
+
+<label>Nombre</label>
+<input type="text" id="nombreTarjeta">
+
+<label>Tarjeta</label>
+<input type="text" id="tarjeta">
+
+<label>Fecha</label>
+<input type="month" id="fecha">
+
+<label>CVV</label>
+<input type="text" id="cvv" maxlength="3">
+
+<div class="modal-botones">
+<button class="btn comprar" onclick="confirmarCompra()">Confirmar</button>
+<button class="btn cancelar" onclick="cerrarModal()">Cancelar</button>
+</div>
+
+</div>
+</div>
+
+<footer class="footer">
+<small>Mariajose © 2026</small>
+</footer>
+
+<script>
+
+// MOSTRAR NOMBRE USER
+document.getElementById("nombreUser").textContent = usuario.nombre;
+
+// PRODUCTOS
+const productos = [
+{id:1,nombre:"Balón Adidas",precio:50000,img:"img/balonadidas.png",descripcion:"Balón profesional"},
+{id:2,nombre:"Guantes Nike",precio:30000,img:"img/guantes.png",descripcion:"Guantes resistentes"},
+{id:3,nombre:"Red de fútbol",precio:80000,img:"img/red.png",descripcion:"Red profesional"}
+];
+
+let id = localStorage.getItem("productoSeleccionado");
+
+if(!id){
+    window.location.href = "productos.html";
+}
+
+let producto = productos.find(p => p.id == id);
+
+// MOSTRAR
+document.getElementById("imgProducto").src = producto.img;
+document.getElementById("nombre").textContent = producto.nombre;
+document.getElementById("precio").textContent = "$" + producto.precio.toLocaleString();
+document.getElementById("descripcion").textContent = producto.descripcion;
+
+// MODAL
+function abrirModal(){
+    document.getElementById("modalCompra").style.display = "flex";
+
+    document.getElementById("modalProducto").textContent = producto.nombre;
+    document.getElementById("precioUnitario").textContent = producto.precio.toLocaleString();
+
+    document.getElementById("cantidad").value = 1;
+    calcularTotal();
+}
+
+function cerrarModal(){
+    document.getElementById("modalCompra").style.display = "none";
+}
+
+// TOTAL
+function calcularTotal(){
+    let cantidad = parseInt(document.getElementById("cantidad").value) || 1;
+
+    if(cantidad < 1){
+        cantidad = 1;
+        document.getElementById("cantidad").value = 1;
+    }
+
+    let total = producto.precio * cantidad;
+    document.getElementById("totalCompra").textContent = total.toLocaleString();
+}
+
+document.getElementById("cantidad").addEventListener("input", calcularTotal);
+
+// VALIDACIÓN
+function validar(){
+    let nombre = document.getElementById("nombreTarjeta").value.trim();
+    let tarjeta = document.getElementById("tarjeta").value.trim();
+    let fecha = document.getElementById("fecha").value;
+    let cvv = document.getElementById("cvv").value.trim();
+
+    if(nombre === "" || tarjeta === "" || fecha === "" || cvv === ""){
+        alert("Completa todos los campos");
+        return false;
+    }
+
+    if(tarjeta.length < 12){
+        alert("Tarjeta inválida");
+        return false;
+    }
+
+    if(cvv.length !== 3){
+        alert("CVV inválido");
+        return false;
+    }
+
+    return true;
+}
+
+// COMPRA
+function confirmarCompra(){
+    if(!validar()) return;
+
+    let cantidad = parseInt(document.getElementById("cantidad").value);
+    let total = producto.precio * cantidad;
+
+    let historial = JSON.parse(localStorage.getItem("historial")) || [];
+
+    historial.push({
+        tipo:"venta",
+        producto: producto.nombre,
+        inicio: new Date().toISOString().split("T")[0],
+        total:"$" + total.toLocaleString(),
+        estado:"finalizado"
+    });
+
+    localStorage.setItem("historial", JSON.stringify(historial));
+
+    cerrarModal();
+    alert("Compra exitosa");
+}
+
+// OTROS
+function carrito(){
+    alert("Agregado al carrito");
+}
+
+function alquilar(){
+    localStorage.setItem("productoAlquiler", JSON.stringify(producto));
+    window.location.href = "alquileruser.html";
+}
+
+function logout(){
+    localStorage.removeItem("login");
+    window.location.href="index.html";
+}
+
+// MENU FUNCIONANDO
+const btn=document.getElementById("menu-toggle");
+const sidebar=document.getElementById("sidebar");
+
+btn.addEventListener("click",()=>{
+    sidebar.classList.toggle("active");
+});
+
+</script>
+
+</body>
+</html>

@@ -1,102 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scalable=1.0,maximum-scalable=1.0, minimum-scalable=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>TICKETS-FET</title>
     <meta name="description" content="Sistema de tickets para inventario">
     <meta name="keywords" content="Sistema, tickets, inventario">
     <meta name="author" content="Mariajose Ramirez G">
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/mediaquerys.css">
-    <link rel="shortcut icon" href="img/icon.png">
-
-    <script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/default.css" type="text/css">
+    <link rel="shorcut icon" href="img/icon.png">
 </head>
 
 <body>
-    <!-- LOGO -->
-    <img src="img/logo.png" alt="Logo" class="logo-login">
 
-    <main>
-    <!-- TARJETA DE INICIO DE SESIÓN -->
-        <div class="card">
-    <!-- FORMULARIO DE INICIO DE SESIÓN -->
-        <form action="#" method="POST" class="form-login" id="loginForm">
+<!-- LOGO -->
+<img src="img/logo.png" alt="Logo" class="logo-login">
 
-            <h2>INICIO SESIÓN</h2>
-            <p>Ingresa tus credenciales para acceder</p>
-    <!-- SOLO EMAIL Y CONTRASEÑA -->
-            <div class="form-login">
-                <input 
-        id="email" 
-        class="input-login"
-        type="email" 
-        name="email" 
-        placeholder="Correo electrónico" 
-        maxlength="50" 
-        minlength="5" 
-        title="Introduce tu correo electrónico" 
-        required>
-        <input 
-        id="password" 
-        class="input-login"
-        type="password" 
-        name="password"
-        placeholder="Contraseña" 
-        maxlength="25" 
-        minlength="8" 
-        title="Introduce tu contraseña" 
-        pattern=".{8,25}" 
-        required>
+<main>
 
+<div class="card">
 
-    <div class="remember">
-        <input type="checkbox">
-        <label>Mantener la sesión iniciada</label>
-    </div>
+<form id="loginForm" class="form-login">
 
-<a href="dashboard.html">
-        <button type="submit" class="btn-enviar">INICIA SESIÓN</button>
-</a>
+<h2>INICIO SESIÓN</h2>
+<p>Ingresa tus credenciales para acceder</p>
 
+<input id="correo" class="input-login" type="email" placeholder="Correo electrónico" required>
+<input id="password" class="input-login" type="password" placeholder="Contraseña" required>
 
-    <div class="extra-links">
-        <p>¿Olvidaste tu contraseña? <a href="Recuperar.html">Recuperar</a></p>
-        <p>¿No tienes cuenta? <a href="Registrar.html">Regístrate</a></p>
-    </div>
-
+<div class="remember">
+<input type="checkbox">
+<label>Mantener la sesión iniciada</label>
 </div>
-            </form>
-        </div>
-    </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <small>Mariajose &copy; 2026</small>
-    </footer>
+<button type="submit" class="btn-enviar">INICIA SESIÓN</button>
+
+<div class="extra-links">
+<p>¿Olvidaste tu contraseña? <a href="Recuperar.html">Recuperar</a></p>
+<p>¿No tienes cuenta? <a href="Registrar.html">Regístrate</a></p>
+</div>
+
+</form>
+</div>
+
+</main>
+
+<footer>
+<small>Mariajose © 2026</small>
+</footer>
 
 <script>
 document.getElementById("loginForm").addEventListener("submit", function(e){
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    let correo = document.getElementById("correo").value.trim();
+    let pass = document.getElementById("password").value.trim();
 
-    const adminEmail = "admin@admin.com";
-    const adminPassword = "12345678";
-
-    if(email === adminEmail && password === adminPassword){
+    // ADMIN
+    if(correo === "admin@admin.com" && pass === "12345678"){
 
         localStorage.setItem("login", "true");
-        window.location.href = "dashboard.html";
-    }else{
 
+        localStorage.setItem("usuario", JSON.stringify({
+            nombre: "Admin Sport",
+            rol: "admin",
+            correo: correo
+        }));
+
+        window.location.href = "dashboard.html";
+    }
+
+    // USER
+    else if(correo === "user@sporthub.com" && pass === "12345678"){
+
+        localStorage.setItem("login", "true");
+
+        localStorage.setItem("usuario", JSON.stringify({
+            nombre: "User Sport",
+            rol: "user",
+            correo: correo
+        }));
+
+        window.location.href = "userinicio.html";
+    }
+
+    else{
         alert("Correo o contraseña incorrectos");
     }
 });
 </script>
+
 </body>
 </html>
-
-

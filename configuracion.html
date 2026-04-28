@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <title>Configuración - SportHub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +10,17 @@
 
 <script>
 if(localStorage.getItem("login") !== "true"){
-window.location.href = "index.html";
+    window.location.href = "index.html";
 }
 </script>
-
 </head>
 
 <body>
 
-
 <!-- HEADER -->
-
 <header class="header">
 
 <div class="menu">
-
 <button id="menu-toggle">
 <i class="fa-solid fa-bars"></i>
 </button>
@@ -34,18 +28,14 @@ window.location.href = "index.html";
 <div class="logo">
 <img src="img/logo_dashboard.png">
 </div>
-
 </div>
-
 
 <div class="search">
 <input type="text" placeholder="Buscar...">
 <i class="fa-solid fa-magnifying-glass"></i>
 </div>
 
-
 <div class="icons">
-
 <button>
 <i class="fa-regular fa-bell"></i>
 </button>
@@ -53,135 +43,58 @@ window.location.href = "index.html";
 <button onclick="logout()">
 <i class="fa-solid fa-arrow-right-from-bracket"></i>
 </button>
-
 </div>
 
-
 <div class="user">
-
 <div>
 <p><b>Admin Sport</b></p>
 <small>Administrador de tienda</small>
 </div>
-
 <img src="img/avatar.png">
-
 </div>
 
 </header>
 
-
-
 <div class="container">
 
 <!-- SIDEBAR -->
-
-<aside class="sidebar">
-
+<aside class="sidebar" id="sidebar">
 <ul>
 
-<li>
-<a href="dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
-
-<li>
-<a href="inventario.html">
-<i class="fa-solid fa-box"></i>
-<span>Inventario</span>
-</a>
-</li>
-
-<li>
-<a href="alquileres.html">
-<i class="fa-solid fa-calendar"></i>
-<span>Alquileres</span>
-</a>
-</li>
-
-<li>
-<a href="reportes.html">
-<i class="fa-solid fa-chart-line"></i>
-<span>Reportes</span>
-</a>
-</li>
-
-<li>
-<a href="tickets.html">
-<i class="fa-solid fa-ticket"></i>
-<span>Tickets</span>
-</a>
-</li>
-
-<li>
-<a href="clientes.html">
-<i class="fa-solid fa-users"></i>
-<span>Clientes</span>
-</a>
-</li>
-
-<li>
-<a href="configuracion.html">
-<i class="fa-solid fa-gear"></i>
-<span>Configuración</span>
-</a>
-</li>
+<li><a href="dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a></li>
+<li><a href="inventario.html"><i class="fa-solid fa-box"></i><span>Inventario</span></a></li>
+<li><a href="alquileres.html"><i class="fa-solid fa-calendar"></i><span>Alquileres</span></a></li>
+<li><a href="reportes.html"><i class="fa-solid fa-chart-line"></i><span>Reportes</span></a></li>
+<li><a href="tickets.html"><i class="fa-solid fa-ticket"></i><span>Tickets</span></a></li>
+<li><a href="clientes.html"><i class="fa-solid fa-users"></i><span>Clientes</span></a></li>
+<li><a href="configuracion.html"><i class="fa-solid fa-gear"></i><span>Configuración</span></a></li>
 
 </ul>
-
 </aside>
 
-
-
 <!-- MAIN -->
-
 <main class="main">
 
 <h1>CONFIGURACIÓN</h1>
 <p>Administra tu cuenta, usuarios y preferencias del sistema.</p>
 
-
-
 <div class="config-container">
 
 <!-- MENU CONFIG -->
-
 <div class="config-menu">
-
 <ul>
-
-<li onclick="mostrarSeccion('cuenta')">
-<i class="fa-solid fa-user"></i> Mi cuenta
-</li>
-
-<li onclick="mostrarSeccion('vendedores')">
-<i class="fa-solid fa-users"></i> Designar vendedor
-</li>
-
-<li onclick="mostrarSeccion('notificaciones')">
-<i class="fa-solid fa-bell"></i> Notificaciones
-</li>
-
-<li onclick="mostrarSeccion('seguridad')">
-<i class="fa-solid fa-shield"></i> Seguridad
-</li>
-
+<li data-seccion="cuenta">Cuenta</li>
+<li data-seccion="vendedores">Vendedores</li>
+<li data-seccion="notificaciones">Notificaciones</li>
+<li data-seccion="seguridad">Seguridad</li>
 </ul>
-
 </div>
 
-
-
 <!-- CONTENIDO -->
-
 <div class="config-content">
 
 <!-- CUENTA -->
-
 <div id="cuenta" class="seccion">
-
 <h2>ADMINISTRAR CUENTA</h2>
 
 <div class="perfil-card">
@@ -189,7 +102,6 @@ window.location.href = "index.html";
 <img src="img/avatar.png">
 
 <div class="perfil-form">
-
 <label>Foto de perfil</label>
 <input type="file">
 
@@ -203,27 +115,18 @@ window.location.href = "index.html";
 <input type="password" value="********">
 
 <button class="btn-verde">Guardar cambios</button>
-
 </div>
 
 </div>
-
 </div>
-
-
 
 <!-- VENDEDORES -->
-
 <div id="vendedores" class="seccion oculto">
-
 <h2>GESTIÓN DE VENDEDORES</h2>
 
-<button class="btn-verde" onclick="abrirFormulario()">
-+ Designar vendedor
-</button>
+<button class="btn-verde" onclick="abrirFormulario()">+ Designar vendedor</button>
 
 <table class="tabla">
-
 <tr>
 <th>Nombre</th>
 <th>Correo</th>
@@ -231,7 +134,6 @@ window.location.href = "index.html";
 </tr>
 
 <tbody id="tablaVendedores">
-
 <tr>
 <td>Juan Pérez</td>
 <td>juan@sporthub.com</td>
@@ -239,56 +141,32 @@ window.location.href = "index.html";
 <button class="btn-rojo" onclick="eliminarVendedor(this)">Eliminar</button>
 </td>
 </tr>
-
 </tbody>
-
 </table>
 
-
 <div id="formVendedor" class="formulario oculto">
-
 <h3>Nuevo vendedor</h3>
 
 <input type="text" id="nombreVendedor" placeholder="Nombre">
-
 <input type="email" id="correoVendedor" placeholder="Correo">
 
-<button class="btn-verde" onclick="guardarVendedor()">
-Guardar
-</button>
-
+<button class="btn-verde" onclick="guardarVendedor()">Guardar</button>
 </div>
 
 </div>
-
-
 
 <!-- NOTIFICACIONES -->
-
 <div id="notificaciones" class="seccion oculto">
-
 <h2>NOTIFICACIONES DE STOCK</h2>
 
-<div class="alerta amarillo">
-⚠ Producto "Guayos Nike" con stock bajo
-</div>
-
-<div class="alerta amarillo">
-⚠ Producto "Balón Adidas" con pocas unidades
-</div>
-
-<div class="alerta verde">
-✔ Inventario actualizado correctamente
-</div>
+<div class="alerta amarillo">⚠ Producto "Guayos Nike" con stock bajo</div>
+<div class="alerta amarillo">⚠ Producto "Balón Adidas" con pocas unidades</div>
+<div class="alerta verde">✔ Inventario actualizado correctamente</div>
 
 </div>
-
-
 
 <!-- SEGURIDAD -->
-
 <div id="seguridad" class="seccion oculto">
-
 <h2>SEGURIDAD</h2>
 
 <label>Contraseña actual</label>
@@ -300,91 +178,92 @@ Guardar
 <label>Confirmar contraseña</label>
 <input type="password">
 
-<button class="btn-verde">
-Actualizar contraseña
-</button>
+<button class="btn-verde">Actualizar contraseña</button>
 
 </div>
-
-
 
 </div>
 </div>
 
 </main>
-
 </div>
 
-
+<footer class="footer">
+<small>Mariajose © 2026</small>
+</footer>
 
 <script>
+document.addEventListener("DOMContentLoaded", function(){
 
-function mostrarSeccion(id){
+    // MENU SIDEBAR
+    const btn = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
 
-let secciones = document.querySelectorAll(".seccion");
+    btn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("active");
+    });
 
-secciones.forEach(sec => {
-sec.classList.add("oculto");
+    // CONFIG MENU
+    const items = document.querySelectorAll(".config-menu li");
+    const secciones = document.querySelectorAll(".seccion");
+
+    function mostrarSeccion(id){
+        secciones.forEach(sec => sec.classList.add("oculto"));
+        document.getElementById(id).classList.remove("oculto");
+    }
+
+    items.forEach(item=>{
+        item.addEventListener("click", function(){
+            let id = this.dataset.seccion;
+
+            mostrarSeccion(id);
+
+            items.forEach(i => i.classList.remove("activo"));
+            this.classList.add("activo");
+        });
+    });
+
+    mostrarSeccion("cuenta");
 });
 
-document.getElementById(id).classList.remove("oculto");
-
-}
-
-
-
+// FUNCIONES
 function abrirFormulario(){
-document.getElementById("formVendedor").classList.remove("oculto");
+    document.getElementById("formVendedor").classList.toggle("oculto");
 }
-
-
 
 function guardarVendedor(){
+    let nombre = document.getElementById("nombreVendedor").value.trim();
+    let correo = document.getElementById("correoVendedor").value.trim();
 
-let nombre = document.getElementById("nombreVendedor").value;
-let correo = document.getElementById("correoVendedor").value;
+    if(nombre === "" || correo === ""){
+        alert("Completa los campos");
+        return;
+    }
 
-if(nombre=="" || correo==""){
-alert("Completa los campos");
-return;
+    let tabla = document.getElementById("tablaVendedores");
+
+    let fila = document.createElement("tr");
+    fila.innerHTML = `
+        <td>${nombre}</td>
+        <td>${correo}</td>
+        <td>
+            <button class="btn-rojo" onclick="eliminarVendedor(this)">Eliminar</button>
+        </td>
+    `;
+
+    tabla.appendChild(fila);
+
+    document.getElementById("nombreVendedor").value="";
+    document.getElementById("correoVendedor").value="";
+    document.getElementById("formVendedor").classList.add("oculto");
 }
-
-let tabla = document.getElementById("tablaVendedores");
-
-let fila = document.createElement("tr");
-
-fila.innerHTML=`
-<td>${nombre}</td>
-<td>${correo}</td>
-<td>
-<button class="btn-rojo" onclick="eliminarVendedor(this)">Eliminar</button>
-</td>
-`;
-
-tabla.appendChild(fila);
-
-document.getElementById("nombreVendedor").value="";
-document.getElementById("correoVendedor").value="";
-
-}
-
-
 
 function eliminarVendedor(btn){
-
-let confirmacion = confirm("¿Desea eliminar este vendedor?");
-
-if(confirmacion){
-
-let fila = btn.parentNode.parentNode;
-fila.remove();
-
+    if(confirm("¿Desea eliminar este vendedor?")){
+        btn.closest("tr").remove();
+    }
 }
-
-}
-
 </script>
-
 
 </body>
 </html>

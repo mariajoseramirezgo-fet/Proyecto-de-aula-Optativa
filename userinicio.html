@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Inicio Usuario - TICKETS-FET</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/userinicio.css">
+<script src="https://kit.fontawesome.com/9d1a86738f.js" crossorigin="anonymous"></script>
+
+<script>
+// SEGURIDAD
+if(localStorage.getItem("login") !== "true"){
+    window.location.href = "index.html";
+}
+
+let usuario = JSON.parse(localStorage.getItem("usuario"));
+
+if(!usuario){
+    window.location.href = "index.html";
+}
+
+if(usuario.rol !== "user"){
+    window.location.href = "dashboard.html";
+}
+</script>
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="menu">
+<button id="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+<div class="logo"><img src="img/logo_dashboard.png" alt="logo"></div>
+</div>
+
+<div class="search">
+<input type="text" placeholder="Buscar...">
+<i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+<div class="icons">
+<button><i class="fa-regular fa-bell"></i></button>
+<button onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+</div>
+
+<div class="user">
+<div>
+<p><b id="nombreUser">User</b></p>
+<small>Usuario</small>
+</div>
+<img src="img/avatar.png" alt="avatar">
+</div>
+
+</header>
+
+<div class="container">
+
+<aside id="sidebar" class="sidebar">
+<ul>
+<li><a href="userinicio.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a></li>
+<li><a href="productosCatalogo.html"><i class="fa-solid fa-box"></i><span>Productos</span></a></li>
+<li><a href="alquileruser.html"><i class="fa-solid fa-calendar"></i><span>Alquiler</span></a></li>
+<li><a href="historialuser.html"><i class="fa-solid fa-clock-rotate-left"></i><span>Historial</span></a></li>
+<li><a href="configuracionuser.html"><i class="fa-solid fa-gear"></i><span>Configuración</span></a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+
+<h1>Bienvenido</h1>
+<p>Gestiona tus alquileres y actividad fácilmente.</p>
+
+<div class="cards">
+
+<div class="card">
+<h3>Productos alquilados</h3>
+<p id="alquilados">0</p>
+<i class="fa-solid fa-box"></i>
+</div>
+
+<div class="card">
+<h3>Historial</h3>
+<p id="historial">0</p>
+<i class="fa-solid fa-clock"></i>
+</div>
+
+<div class="card">
+<h3>Pendientes</h3>
+<p id="pendientes">0</p>
+<i class="fa-solid fa-triangle-exclamation"></i>
+</div>
+
+</div>
+
+<div class="cards-large">
+
+<div class="card-large">
+<h3>Próximos alquileres</h3>
+
+<div class="item">
+<span>Balón Adidas</span>
+<span>25 Abril</span>
+</div>
+
+<div class="item">
+<span>Guantes Nike</span>
+<span>28 Abril</span>
+</div>
+
+</div>
+
+<div class="card-large">
+<h3>Actividad reciente</h3>
+
+<div class="item">✔ Alquilaste "Balón Nike"</div>
+<div class="item">✔ Devolviste "Guantes"</div>
+
+</div>
+
+<div class="card-large">
+<h3>Accesos rápidos</h3>
+
+<a href="productos.html" class="btn-verde">Ver productos</a>
+<a href="alquileruser.html" class="btn-verde">Nuevo alquiler</a>
+
+</div>
+
+</div>
+</main>
+</div>
+
+<footer class="footer">
+<small>Mariajose © 2026</small>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    let usuario = JSON.parse(localStorage.getItem("usuario"));
+    document.getElementById("nombreUser").textContent = usuario.nombre;
+
+    document.getElementById("alquilados").textContent = 2;
+    document.getElementById("historial").textContent = 5;
+    document.getElementById("pendientes").textContent = 1;
+
+    const btn = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+
+    btn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("active");
+    });
+
+});
+
+function logout(){
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
